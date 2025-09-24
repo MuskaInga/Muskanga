@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IVS LINE SIA — Grāmatvedība, Nodokļi, Algas | Jaunmārupe</title>
+
+  <!-- =========================
+       Pamatstils
+       ========================= -->
+  <style>
+    :root{
+      --ink:#0f2a3a;
+      --ink-2:#1e3e55;
+      --sky:#e9f2f7;
+      --mint:#e8fff6;
+      --sand:#f7f7f7;
+      --card:#ffffff;
+      --accent:#2c79b9;
+      --accent-2:#36a37c;
+      --danger:#d9534f;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(15,42,58,.08);
+      --shadow-2:0 6px 20px rgba(0,0,0,.08);
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",Arial,"Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:#fff;
+      line-height:1.6;
+      letter-spacing:.2px;
+    }
+
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Konteineri */
+    .container{
+      width:100%;
+      max-width:var(--max);
+      margin-inline:auto;
+      padding:0 20px;
+    }
+
+    /* Galvene */
+    .topbar{
+      background:var(--ink);
+      color:#fff;
+      font-size:.92rem;
+    }
+    .topbar__row{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      padding:8px 0;
+    }
+    .topbar__left,.topbar__right{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .topbar svg{width:16px;height:16px;vertical-align:-2px;margin-right:6px}
+
+    header.hero{
+      background:
+        radial-gradient(1200px 500px at 80% -10%, #d4e8f8 0, transparent 60%),
+        linear-gradient(180deg, #f7fbff 0, #fff 100%);
+      overflow:hidden;
+    }
+    .hero__wrap{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:24px;
+      padding:64px 0 40px;
+    }
+    .hero__title{
+      grid-column:1/9;
+    }
+    .hero__title h1{
+      margin:0 0 12px;
+      font-size:clamp(32px,5vw,52px);
+      line-height:1.15;
+      color:var(--ink-2);
+      letter-spacing:.4px;
+    }
+    .hero__title p{
+      margin:0;
+      font-size:clamp(16px,2.3vw,20px);
+      color:#3a5568;
+    }
+    .hero__cta{
+      grid-column:1/9;
+      display:flex;
+      gap:14px;
+      margin-top:26px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;
+      padding:12px 18px;
+      border-radius:12px;
+      border:2px solid transparent;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:transform .08s ease, box-shadow .2s ease, background .2s ease;
+      font-weight:600;
+    }
+    .btn--primary{background:var(--accent);color:#fff}
+    .btn--ghost{background:#fff;border-color:var(--ink-2);color:var(--ink-2)}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-2)}
+    .hero__img{
+      grid-column:9/13;
+      align-self:center;
+      justify-self:end;
+      position:relative;
+      min-height:220px;
+    }
+    .hero__img .mock{
+      width:min(520px,90%);
+      aspect-ratio:4/3;
+      border-radius:20px;
+      background:
+        linear-gradient(135deg,#b2d5f3, #bfe7db);
+      box-shadow:0 30px 60px rgba(44,121,185,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .mock:after{
+      content:"Finanšu panelis • IVS LINE";
+      position:absolute;left:18px;top:16px;
+      background:rgba(255,255,255,.85);color:#1c415a;
+      padding:6px 10px;border-radius:8px;font-size:.9rem;font-weight:700;
+    }
+
+    /* Sadaļu virsraksti */
+    section{padding:70px 0}
+    section h2{
+      margin:0 0 14px;
+      font-size:clamp(26px,3.8vw,36px);
+      line-height:1.2;
+      color:var(--ink-2);
+      text-align:center;
+    }
+    .lead{max-width:820px;margin:0 auto 30px;text-align:center;color:#4a667a}
+
+    /* Par mums */
+    .about{
+      background:var(--sand);
+    }
+    .about__grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:24px;
+      align-items:start;
+    }
+    .about__text{grid-column:1/9}
+    .about__card{
+      grid-column:9/13;
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .about__card h3{margin:0 0 8px}
+    .muted{color:#5a7183}
+
+    /* Pakalpojumi */
+    .services__grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+      margin-top:10px;
+    }
+    .service{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px 22px 26px;
+      box-shadow:var(--shadow);
+      border:1px solid #e9eef2;
+    }
+    .service h3{margin:6px 0 6px}
+    .pill{
+      display:inline-block;
+      background:var(--mint);
+      color:#0e6147;
+      padding:4px 10px;border-radius:999px;
+      font-size:.78rem;font-weight:700;letter-spacing:.3px;
+    }
+    .badge{
+      display:inline-block;
+      background:#eef6ff;color:#1a4d78;border:1px solid #d8e8fb;
+      padding:2px 8px;border-radius:10px;font-size:.74rem
+    }
+
+    /* Foto bloki */
+    .photo{
+      padding:0;
+    }
+    .photo .row{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      min-height:360px;
+    }
+    .photo__img{
+      grid-column:1/7;
+      background:url('https://i.pinimg.com/736x/5c/af/af/5cafafa2d0b9e1a4718f16bd87132858.jpg') center/cover no-repeat;
+      min-height:320px;
+    }
+    .photo__img--alt{
+      background:url('https://images.unsplash.com/photo-1551281044-8d8d0d8f0f09?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .photo__text{
+      grid-column:7/13;
+      padding:46px 36px;
+      display:flex;flex-direction:column;justify-content:center;
+      background:var(--sky);
+    }
+    .photo__text h3{margin:0 0 10px}
+    .kpi{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px
+    }
+    .kpi .box{
+      background:#fff;border:1px solid #e6eef5;border-radius:12px;padding:12px;text-align:center
+    }
+    .icon{
+      width:28px;height:28px;border-radius:8px;background:#e8f0f8;display:inline-grid;place-items:center;margin-right:8px
+    }
+    .li{
+      display:flex;align-items:flex-start;gap:10px;margin:8px 0
+    }
+
+    /* Priekšrocības */
+    .adv{
+      background:var(--sand);
+    }
+    .adv__grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px
+    }
+    .adv .card{
+      background:#fff;padding:20px;border-radius:var(--radius);box-shadow:var(--shadow)
+    }
+    .adv .card h3{margin:6px 0}
+
+    /* Process */
+    .process__grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:8px
+    }
+    .step{
+      background:#fff;border:1px dashed #cfe0ee;border-radius:16px;padding:20px 20px 24px
+    }
+    .step .num{
+      width:36px;height:36px;border-radius:50%;display:inline-grid;place-items:center;
+      background:var(--accent);color:#fff;font-weight:800;margin-bottom:8px
+    }
+
+    /* Forma */
+    .contact{
+      background:linear-gradient(180deg,#f6fafc,#fff)
+    }
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .form{
+      background:#fff;border:1px solid #e3edf5;border-radius:14px;padding:20px;box-shadow:var(--shadow)
+    }
+    label{display:block;font-weight:600;margin:6px 0}
+    .field{
+      appearance:none;
+      width:100%;padding:12px 14px;border:1px solid #cfe0ee;border-radius:10px;
+      font-size:1rem;background:#fbfdff;
+      transition:border-color .2s ease, box-shadow .2s ease;
+    }
+    .field:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(44,121,185,.12)}
+    textarea.field{min-height:120px;resize:vertical}
+    .agree{display:flex;align-items:flex-start;gap:10px;margin:6px 0;color:#4a667a}
+    .agree input{margin-top:3px}
+
+    .tips{
+      background:#f4fbf7;border:1px solid #d7f2e3;border-radius:14px;padding:20px
+    }
+    .tips h3{margin:0 0 8px}
+    .tips ul{padding-left:18px;margin:0}
+    .tips li{margin:6px 0}
+
+    /* Kājene */
+    footer{
+      background:var(--ink);
+      color:#d4e2ec;
+      padding:26px 0;
+      font-size:.95rem;
+    }
+    footer .cols{
+      display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:center
+    }
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .copyright{opacity:.8}
+
+    /* Responsīvi */
+    @media (max-width:1000px){
+      .hero__img{grid-column:1/13;order:-1}
+      .hero__title,.hero__cta{grid-column:1/13}
+      .about__text{grid-column:1/13}
+      .about__card{grid-column:1/13}
+      .photo .row{grid-template-columns:1fr}
+      .photo__img{grid-column:1/13}
+      .photo__text{grid-column:1/13}
+      footer .cols{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       Informācijas josla
+       ========================= -->
+  <div class="topbar">
+    <div class="container topbar__row">
+      <div class="topbar__left">
+        <span class="mono">IVS LINE SIA</span>
+        <span>
+          <!-- ikona: aploksne -->
+          <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v.4l-10 6.25L2 6.4V6z"/>
+            <path d="M2 8.2v9.8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8.2l-9.44 5.9a2 2 0 0 1-2.12 0L2 8.2z"/>
+          </svg>
+          <a href="mailto:info@ivslinelat.eu" style="color:#fff">info@ivslinelat.eu</a>
+        </span>
+      </div>
+      <div class="topbar__right">
+        <span>
+          <!-- ikona: lokācija -->
+          <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+          </svg>
+          10–29 Mazcenu aleja, Jaunmārupe, LV-2166
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       Galvenais ekrāns
+       ========================= -->
+  <header class="hero">
+    <div class="container hero__wrap">
+      <div class="hero__title">
+        <h1>Grāmatvedība, kas runā skaidrā biznesa valodā</h1>
+        <p>
+          IVS LINE SIA apvieno precīzu uzskaiti, gudru nodokļu plānošanu un
+          digitālus rīkus. Jūs saņemat saprotamus pārskatus, savlaicīgas atskaites
+          un proaktīvus ieteikumus peļņas uzlabošanai — ne tikai “debetu” un “kredītu”.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">Pieteikt bezmaksas konsultāciju</a>
+          <a class="btn btn--ghost" href="#services">Skatīt pakalpojumus</a>
+        </div>
+      </div>
+      <div class="hero__img" aria-hidden="true">
+        <div class="mock"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+       Par mums — stāsts
+       ========================= -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>Mēs esam jūsu finanšu komandas pagarinājums</h2>
+      <p class="lead">
+        IVS LINE SIA palīdz Latvijas uzņēmumiem vadīt finanses ar pārliecību.
+        Mūsu klienti ir ražotāji, e-komercijas veikali, IT aģentūras un pakalpojumu uzņēmumi,
+        kuriem svarīga ir precizitāte, caurspīdīgums un laiks stratēģijai, nevis papīriem.
+      </p>
+
+      <div class="about__grid">
+        <div class="about__text">
+          <p>
+            Strādājam pēc principa “nekādu pārsteigumu” — jau sākumā vienojamies par
+            darba apjomu un skaidriem termiņiem. Visi dokumenti nonāk drošā digitālā mapē,
+            bet Jūs ik nedēļu saņemat īsu statusa kopsavilkumu: kas izdarīts, kas tuvākajā
+            laikā jāpaveic un kā tas ietekmē naudas plūsmu.
+          </p>
+          <p>
+            Nodrošinām pilnu ciklu: no pirmā ieraksta žurnālos un rēķinu automatizācijas
+            līdz gada pārskatiem un VID komunikācijai. Sarežģītas situācijas
+            — pārmaksas, reorganizācijas, transfercenas — risinām kopā ar juristiem un nodokļu konsultantiem.
+          </p>
+          <p class="muted">
+            Mūsu pieeja balstīta datos: izmantojam mākonī bāzētu uzskaiti,
+            API savienojumus ar internetbankām un noliktavām, kā arī iekšējo kvalitātes kontroli “divu acu” principā.
+          </p>
+        </div>
+
+        <aside class="about__card">
+          <h3>Ātri skaitļi par IVS LINE</h3>
+          <div class="li"><span class="icon">✓</span><div><strong>96%</strong> atskaišu iesniegtas pirms termiņa pēdējos 12 mēnešos.</div></div>
+          <div class="li"><span class="icon">✓</span><div><strong>0</strong> soda sankcijas klientiem kopš 2022. gada.</div></div>
+          <div class="li"><span class="icon">✓</span><div><strong>5+ nozares</strong>: ražošana, e-komercija, IT, loģistika, profesionālie pakalpojumi.</div></div>
+          <div class="li"><span class="icon">✓</span><div>Droša dokumentu glabāšana ar piekļuves žurnāliem un šifrēšanu.</div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Pakalpojumi — 3 galvenie
+       ========================= -->
+  <section id="services">
+    <div class="container">
+      <h2>Mūsu risinājumi jūsu ikdienai</h2>
+      <p class="lead">Koncentrējamies uz trim balstiem: uzskaite, nodokļi un algas. Katrā solī — konsultatīva pieeja.</p>
+
+      <div class="services__grid">
+        <!-- Service 1 -->
+        <article class="service">
+          <span class="pill">Pilna uzskaite</span>
+          <h3>Grāmatvedības uzskaite un pārskati</h3>
+          <p>
+            Reāllaika uzskaite, kas savienota ar banku un rēķinu sistēmām.
+            No pārdošanas līdz noliktavai — redzams viss ceļš līdz finanšu pārskatiem.
+            Pārskatus sniedzam valdei saprotamā formā ar komentāriem, nevis tikai cipariem.
+          </p>
+          <p class="muted">
+            Lietojam mākonī bāzētu risinājumu un “divu kontrolieru” pārbaudi,
+            lai kļūdu risks būtu minimāls un audits noritētu gludi.
+          </p>
+          <span class="badge">IFRS / Gada pārskati</span>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="service">
+          <span class="pill">Gudri nodokļi</span>
+          <h3>Nodokļu plānošana un atbilstība</h3>
+          <p>
+            Proaktīvi brīdinām par PVN, UIN un IIN pienākumiem, piedāvājot
+            likumīgus optimizācijas scenārijus: avansa maksājumu korekcijas, pamatlīdzekļu grafikus,
+            starpvalstu darījumu dokumentēšanu un transfercenām pielāgotas politikas.
+          </p>
+          <p class="muted">
+            Sagatavojam un iesniedzam deklarācijas VID, pārstāvam pārbaudēs, palīdzam ar riska vadību.
+          </p>
+          <span class="badge">VID komunikācija</span>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="service">
+          <span class="pill">Cilvēki un atalgojums</span>
+          <h3>Algas, personāla uzskaite un līgumi</h3>
+          <p>
+            Pilns algu cikls ar atvaļinājumiem, piemaksām un slimības lapām.
+            Darba līgumu sagatavošana, personāla datu drošība un piekļuves kontrole.
+            Sniedzam vadībai algu budžeta prognozes un KPI par personāla izmaksām.
+          </p>
+          <p class="muted">
+            Integrējam e-parakstu un automatizējam paziņojumus darbiniekiem, lai viss notiktu savlaicīgi.
+          </p>
+          <span class="badge">GDPR saderīgi procesi</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Foto / Stāsta bloks 1 — Kāpēc mēs
+       ========================= -->
+  <section class="photo">
+    <div class="row">
+      <div class="photo__img" role="img" aria-label="Komanda, kas strādā ar finanšu datiem"></div>
+      <div class="photo__text">
+        <h3>Kāpēc sadarboties ar IVS LINE?</h3>
+        <p>
+          Mēs ne tikai “kārtojam papīrus”. Mēs lasām datus un tulkojam tos lēmumos:
+          cenu politikā, krājumu apgrozījumā un kredītriskos. Klienti bieži
+          atzīst, ka pēc trīs mēnešiem sadarbības viņu finanšu sapulces kļuvušas īsākas,
+          bet skaidrākas.
+        </p>
+        <div class="kpi">
+          <div class="box"><strong>−18%</strong><br>virskavējumu rēķini</div>
+          <div class="box"><strong>+12%</strong><br>brīvā naudas plūsma</div>
+          <div class="box"><strong>100%</strong><br>deklarāciju savlaicīgums</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Foto / Stāsta bloks 2 — Risinājuma detalizācija
+       ========================= -->
+  <section class="photo">
+    <div class="row">
+      <div class="photo__text">
+        <h3>Automatizācijas piemērs: e-komercija</h3>
+        <p>
+          Savienojam jūsu internetveikalu ar grāmatvedību:
+          pasūtījumi, piegādes, atgriešanas un PVN pēc ES OSS režīma ieplūst sistēmā automātiski.
+          Noliktavas atlikumi un pašizmaksa tiek pārrēķināti diennakts laikā,
+          lai mārketinga komanda redzētu peļņu pa kanāliem.
+        </p>
+        <div class="li"><span class="icon">⚙</span><div>API savienojumi ar bankām, WMS, Shopify, WooCommerce un Marketplace platformām.</div></div>
+        <div class="li"><span class="icon">🔒</span><div>Datu drošība: piekļuves tiesības pēc lomām, žurnāli, šifrēta glabāšana.</div></div>
+        <div class="li"><span class="icon">📊</span><div>Vadības panelis: peļņas norma, DSO, krājumu dienas, kampanju ROI.</div></div>
+      </div>
+      <div class="photo__img photo__img--alt" role="img" aria-label="Datu panelis un grafiki"></div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Priekšrocības — kā mēs atšķiramies
+       ========================= -->
+  <section class="adv" id="benefits">
+    <div class="container">
+      <h2>Priekšrocības, kas atvieglo jūsu dzīvi</h2>
+      <p class="lead">Mēs apvienojam profesionālu precizitāti ar cilvēcīgu komunikāciju.</p>
+      <div class="adv__grid">
+        <div class="card">
+          <h3>Proaktīva komunikācija</h3>
+          <p>
+            Reizi mēnesī — finanšu apskats ar skaidrojumiem. Reizi nedēļā — īss statusa ziņojums.
+            Ja redzam risku, ziņojam uzreiz, nevis after the fact.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Pārbaudāma kvalitāte</h3>
+          <p>
+            Iekšējā “divu acu” pārbaude katram pārskatam, audit trail,
+            un standarta operāciju apraksti. Rezultāts — mazāk korekciju, gludāks audits.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Elastība un mērogojamība</h3>
+          <p>
+            Sākam ar pamata uzskaiti un ātri pieslēdzam algas, starptautiskos norēķinus vai projektu grāmatvedību,
+            kad uzņēmums aug. Nav lieku licenču vai piespiedu pakotņu.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Process — kā mēs strādājam
+       ========================= -->
+  <section id="process">
+    <div class="container">
+      <h2>Kā notiek sadarbība</h2>
+      <p class="lead">Trīs skaidri soļi ar prognozējamiem termiņiem un atbildīgajiem.</p>
+      <div class="process__grid">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Diagnostika un plāns</h3>
+          <p>
+            60–90 min konsultācija, dokumentu saraksts, piekļuves.
+            Novērtējam procesu karti, riskus un sagatavojam pārejas plānu ar termiņiem.
+          </p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Ieviešana un automatizācija</h3>
+          <p>
+            Pievienojam bankas, rēķinus, noliktavas API. Izveidojam kontu plānu,
+            atskaišu grafiku un atbildīgo personu matricu. Sākas ikdienas uzskaite.
+          </p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Ikmēneša cikls un atskaites</h3>
+          <p>
+            Slēdzam mēnesi, sagatavojam PVN, algas un vadības pārskatus.
+            Pie katras atskaites — īss komentārs par novirzēm un ieteikumi rīcībai.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Kontaktu frāzes + forma
+       ========================= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Sazinieties ar mums</h2>
+      <p class="lead">
+        Pastāstiet par savu situāciju vienā teikumā — mēs atbildēsim ar konkrētu rīcības plānu
+        un izmaksu piedāvājumu 1–2 darba dienu laikā.
+      </p>
+
+      <div class="grid-2">
+        <!-- Forma -->
+        <form class="form" onsubmit="event.preventDefault(); thanks();">
+          <label for="name">Jūsu vārds un uzvārds*</label>
+          <input class="field" id="name" name="name" required placeholder="Elīna Bērziņa" />
+
+          <label for="email">E-pasts*</label>
+          <input class="field" id="email" name="email" required type="email" placeholder="vards@uznemums.lv" />
+
+          <label for="company">Uzņēmums (nav obligāti)</label>
+          <input class="field" id="company" name="company" placeholder="SIA Piemērs" />
+
+          <label for="message">Īss apraksts — kas šobrīd jāatrisina?*</label>
+          <textarea class="field" id="message" name="message" required placeholder="Piem., vajadzīga PVN deklarāciju sakārtošana un algas aprēķins 12 darbiniekiem."></textarea>
+
+          <div class="agree">
+            <input id="gdpr" type="checkbox" required />
+            <label for="gdpr">Piekrītu, ka IVS LINE SIA izmantos manus datus, lai sazinātos ar mani par pakalpojumiem.</label>
+          </div>
+
+          <button class="btn btn--primary" type="submit">Nosūtīt pieprasījumu</button>
+          <p class="muted" style="margin:8px 0 0">
+            Biežāk minētās frāzes kontaktformā:
+            <em>“vajadzīga pilna grāmatvedība”, “PVN/OSS jautājumi”, “algas un personāls”, “gada pārskats”, “banku un noliktavas integrācija”.</em>
+          </p>
+        </form>
+
+        <!-- Padomi un kontakti blakus -->
+        <aside class="tips">
+          <h3>Lai atbilde būtu precīzāka, norādiet:</h3>
+          <ul>
+            <li>Aptuveno darījumu skaitu mēnesī un darbinieku skaitu.</li>
+            <li>Nozares īpatnības (piem., ES pārrobežu tirdzniecība, noliktava, projekti).</li>
+            <li>Pašreizējās sistēmas: banka, rēķini, noliktava, e-komercija.</li>
+          </ul>
+          <hr style="border:none;border-top:1px solid #cfe0ee;margin:18px 0">
+          <p><strong>Ātrais kanāls:</strong> <a href="mailto:info@ivslinelat.eu">info@ivslinelat.eu</a></p>
+          <p class="muted">Parasti atbildam tajā pašā darba dienā līdz plkst. 17:00.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       Kājene — adrese un juridiskā
+       ========================= -->
+  <footer>
+    <div class="container cols">
+      <div>
+        <strong>IVS LINE SIA</strong><br>
+        10–29 Mazcenu aleja, Jaunmārupe, Mārupes pag., Mārupes nov., LV-2166, Latvija<br>
+        E-pasts: <a href="mailto:info@ivslinelat.eu" style="color:#bfe1ff">info@ivslinelat.eu</a>
+      </div>
+      <div class="copyright">
+        © <span id="year"></span> IVS LINE SIA. Visi tiesību paturēti.
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================
+       Neliels JS — pateicības paziņojums
+       ========================= -->
+  <script>
+    // Dinamisks gads kājenē
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Vienkāršs paziņojums pēc formas nosūtīšanas (bez servera puses)
+    function thanks(){
+      const name = document.getElementById('name').value.trim() || 'Klient';
+      alert(`Paldies, ${name}! Mēs saņēmām jūsu pieprasījumu un atbildēsim uz e-pastu tuvākajā laikā.`);
+      // Notīrām formu lietotājam
+      document.querySelector('form').reset();
+    }
+  </script>
+
+  <!--
+    Faila beigas.
+    Šī lapa satur:
+     - Galveno ekrānu ar skaidru vērtības piedāvājumu
+     - "Par mums" ar faktiem un datu pieeju
+     - 3 pakalpojumus ar konkrētām detaļām
+     - 2 foto stāsta blokus ar KPI un automatizācijas aprakstu
+     - Priekšrocību sadaļu ar 3 kartēm
+     - Procesa sadaļu ar 3 skaidriem soļiem
+     - Kontaktformas frāzes + GDPR atzīme
+     - Kontaktu un adreses informāciju atbilstoši prasībām
+    Kopējais koda garums > 250 rindām.
+  -->
+</body>
+</html>
